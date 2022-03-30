@@ -1,0 +1,76 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block base_content %}
+
+    <section class="inner-section single-banner"
+             style="background: url({% static 'website/images/single-banner.jpg' %}) no-repeat center;">
+        <div class="container"><h2>Our Stock</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">All Products are varified and guaranteed of
+                    quality
+                </li>
+            </ol>
+        </div>
+    </section>
+    <section class="inner-section shop-part">
+        <div class="container">
+
+            {# FILTERS #}
+            <div class="row">
+
+            </div>
+
+            {# PRODUCTS #}
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
+                {% for foo in '1234456788433'|make_list %}
+                    <div class="col">
+                        <div class="product-card">
+                            <div class="product-media">
+                                <div class="product-label">
+                                    <label class="label-text new">available</label></div>
+                                <button class="product-wish wish">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <a class="product-image" href="#">
+                                    <img src="{% static 'website/images/product/01.jpg' %}" alt="product">
+                                </a>
+                                <div class="product-widget">
+                                    <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal"
+                                       data-bs-target="#product-view">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-rating">
+                                    <i class="active icofont-star"></i>
+                                    <i class="active icofont-star"></i>
+                                    <i class="active icofont-star"></i>
+                                    <i class="active icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <a href="#">(3)</a>
+                                </div>
+                                <h6 class="product-name"><a href="#">fresh green chilis</a></h6>
+                                <h6 class="product-price">
+                                    <del>$34</del>
+                                    <span>$28<small>/piece</small></span></h6>
+                                <button class="product-add" title="Add to Cart"><i
+                                        class="fas fa-shopping-basket"></i><span>add</span></button>
+                                <div class="product-action">
+                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i>
+                                    </button>
+                                    <input class="action-input" title="Quantity Number" type="text" name="quantity"
+                                           value="1">
+                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
