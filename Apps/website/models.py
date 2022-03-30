@@ -28,11 +28,11 @@ class ProductBrand(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=255, unique=True, help_text="Unique name for product"),
+    name = models.CharField(max_length=255, unique=True, help_text="Unique name for product")
     description = models.TextField(
         default="Please provide description for this product, description is required for better understanding",
         help_text="Please provide description for this product, description is required for better understanding"
-    ),
+    )
     detailed_description = RichTextField()
     image = ResizedImageField(
         upload_to='product/image/', null=False, blank=False, help_text="Image must be of png and size of [500*500]",
