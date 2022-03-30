@@ -1,10 +1,12 @@
-
+import os
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = True
+AUTH_USER_MODEL = 'accounts.User'
 ALLOWED_HOSTS = ['*']
 ROOT_URLCONF = 'pw_amazon_ecommerce.urls'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 WSGI_APPLICATION = 'pw_amazon_ecommerce.wsgi.application'
 SECRET_KEY = 'django-insecure-gidc@g9l5pc=5ub%n*9(57al$s&ka)0)*bh146j)k67xy2^7^*'
 
@@ -16,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Apps.website.apps.WebsiteConfig',
+    'Apps.accounts.apps.WebsiteConfig',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,16 +88,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'assets'
+    os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DJANGORESIZED_DEFAULT_SIZE = [1920, 1080]
+DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_KEEP_META = True
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {
+    'JPEG': ".jpg",
+    'PNG': ".png",
+    'GIF': ".gif"
+}
+DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True

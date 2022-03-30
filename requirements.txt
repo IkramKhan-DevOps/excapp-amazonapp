@@ -1,0 +1,4 @@
+django
+django-ckeditor
+django-resized
+django_filters
