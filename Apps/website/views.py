@@ -24,14 +24,3 @@ class ProductDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         return context
-
-
-class AboutUsView(TemplateView):
-    template_name = 'website/product_list'
-
-    def get_context_data(self, **kwargs):
-        context = super(AboutUsView, self).get_context_data(**kwargs)
-        return context
-
-
-
