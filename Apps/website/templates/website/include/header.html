@@ -13,7 +13,7 @@
                 class="header-widget"
                 title="My Account"><img
                 src="{% static 'website/images/user.png' %}" alt="user"><span>join</span></a>
-            <form class="header-form"><input type="text" placeholder="Search anything...">
+            <form class="header-form" method="get" action="/product/"><input type="text" id="name" name="name" placeholder="Search anything...">
                 <button><i class="fas fa-search"></i></button>
             </form>
             <div class="header-widget-group"><a href="#" class="header-widget" title="Compare List"><i

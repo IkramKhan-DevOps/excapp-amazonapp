@@ -17,6 +17,20 @@ class ProductCategory(models.Model):
         return Product.objects.filter(category___pk=self.pk)
 
 
+class ProductTag(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        verbose_name_plural = 'Product Tags'
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.name
+
+    def get_tag_products(self):
+        return Product.objects.filter(tags__pk=self.pk)
+
+
 class ProductBrand(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
@@ -43,6 +57,7 @@ class Product(models.Model):
         ProductBrand, on_delete=models.SET_NULL, null=True, blank=True,
         help_text="Select product brand, if no brands for this just leave it blank"
     )
+    tags = models.ManyToManyField(ProductTag)
     retail_price = models.FloatField(default=1)
     sale_price = models.FloatField(default=1)
 

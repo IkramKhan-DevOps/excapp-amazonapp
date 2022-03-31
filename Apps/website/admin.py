@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    ProductImage, ProductBrand, ProductCategory, Product
+    ProductImage, ProductBrand, ProductCategory, Product, ProductTag
 )
 
 
@@ -10,6 +10,10 @@ class ProductImageAdmin(admin.ModelAdmin):
 
 
 class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ['pk', 'name']
+
+
+class ProductTagAdmin(admin.ModelAdmin):
     list_display = ['pk', 'name']
 
 
@@ -34,3 +38,4 @@ admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(ProductBrand, ProductBrandAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(ProductTag, ProductTagAdmin)

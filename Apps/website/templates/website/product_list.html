@@ -1,0 +1,125 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block base_content %}
+
+    <section class="inner-section single-banner"
+             style="background: url({% static 'website/images/single-banner.jpg' %}) no-repeat center;">
+        <div class="container"><h2>Our Stock</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">All Products are varified and guaranteed of
+                    quality
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="inner-section shop-part">
+        <div class="container">
+
+            {# PRODUCTS #}
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
+                {% if object_list %}
+                    {% for object in object_list %}
+                        <div class="col">
+                            <div class="product-card">
+                                <div class="product-media">
+                                    <div class="product-label">
+                                        {% if object.status %}
+                                            <label class="label-text new">Available</label></div>
+                                        {% else %}
+                                            <label class="label-text off">Out of Stock</label></div>
+                                        {% endif %}
+                                <button class="product-wish wish">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <a class="product-image" href="#">
+                                    <img src="{{ object.image.url }}" alt="product">
+                                </a>
+                                <div class="product-widget">
+                                    <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal"
+                                       data-bs-target="#product-view">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-rating">
+                                    <i class="active icofont-star"></i>
+                                    <i class="active icofont-star"></i>
+                                    <i class="active icofont-star"></i>
+                                    <i class="active icofont-star"></i>
+                                    <i class="icofont-star"></i>
+                                    <a href="#">(3)</a>
+                                </div>
+                                <h6 class="product-name"><a href="#">{{ object.name }}</a></h6>
+                                <h6 class="product-price">
+                                    <del>$0</del>
+                                    <span>${{ object.sale_price }}</span></h6>
+                                <button class="product-add" title="Add to Cart"><i
+                                        class="fas fa-shopping-basket"></i><span>add</span></button>
+                                <div class="product-action">
+                                    <button class="action-minus" title="Quantity Minus"><i
+                                            class="icofont-minus"></i>
+                                    </button>
+                                    <input class="action-input" title="Quantity Number" type="text" name="quantity"
+                                           value="1">
+                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-danger"><b>No products available for now</b></p>
+                {% endif %}
+
+        </div>
+    </section>
+
+    {% if object_list %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mt-4">
+                    <ul class="pagination">
+                        {% if object_list.has_previous %}
+                            <li>
+                            <span>
+                                <a href="{% relative_url object_list.previous_page_number 'page' request.GET.urlencode %}">
+                                    Previous
+                                </a>
+                            </span>
+                            </li>
+                        {% endif %}
+                        <li class="">
+                            <span>Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.</span>
+                        </li>
+                        {% if object_list.has_next %}
+                            <li>
+                            <span>
+                                <a href="{% relative_url object_list.next_page_number 'page' request.GET.urlencode %}">
+                                    Next
+                                </a>
+                            </span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block base_js_out %}
+    <script>
+        $(document).ready(function () {
+
+            $('label').hide();
+            $('input').addClass('form-control');
+            $('select').addClass('form-control');
+
+        });
+    </script>
+{% endblock %}
