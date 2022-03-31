@@ -2,6 +2,10 @@
 {% load static %}
 {% load custom_tags %}
 
+{% block base_title %}
+    Products
+{% endblock %}
+
 {% block base_content %}
 
     <section class="inner-section single-banner"
@@ -34,7 +38,7 @@
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="product-image" href="#">
+                                <a class="product-image" href="{% url 'website:product-detail' object.pk %}">
                                     <img src="{{ object.image.url }}" alt="product">
                                 </a>
                                 <div class="product-widget">
@@ -52,7 +56,7 @@
                                     <i class="icofont-star"></i>
                                     <a href="#">(3)</a>
                                 </div>
-                                <h6 class="product-name"><a href="#">{{ object.name }}</a></h6>
+                                <h6 class="product-name"><a href="{% url 'website:product-detail' object.pk %}">{{ object.name }}</a></h6>
                                 <h6 class="product-price">
                                     <del>$0</del>
                                     <span>${{ object.sale_price }}</span></h6>

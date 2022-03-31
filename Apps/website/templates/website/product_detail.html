@@ -1,6 +1,10 @@
 {% extends 'website/base.html' %}
 {% load static %}
 
+{% block base_title %}
+    {{ object.name }}
+{% endblock %}
+
 
 {% block base_content %}
 
@@ -10,13 +14,19 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-6">
-
-                            <img src="{% static 'website/images/product/01.jpg' %}">
+                        <div class="col-sm-4 my-4">
+                            <div class="tab-content">
+                                <div class="tab-pane active">
+                                    <div><img src="{{ object.image.url }}" alt=""
+                                              class="img-fluid mx-auto d-block"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="mt-4 mt-xl-3"><a href="/" class="text-primary">Headphone</a> <h4
-                                    class="mt-1 mb-3">Wireless Headphone (Black)</h4>
+                        <div class="col-sm-8">
+                            <div class="mt-4 mt-xl-3"><a href="/product/?category__id={{ object.category.pk }}"
+                                                         class="text-primary">{{ object.category }}</a> <h4
+                                    class="mt-1 mb-3">{{ object.name }} {% if object.brand %}({{ object.brand }}
+                                ){% endif %}</h4>
                                 <p class="text-muted float-start me-3"><span class="bx bxs-star text-warning"></span>
                                     <i class="text-warning icofont-star"></i>
                                     <i class="text-warning icofont-star"></i>
@@ -24,13 +34,18 @@
                                     <i class="text-warning icofont-star"></i>
                                     <i class="icofont-star"></i>
                                 </p>
-                                <p class="text-muted mb-4">( 0 Customers Review )</p> <h6
-                                        class="text-success text-uppercase">20 % Off</h6>
-                                <h5 class="mb-4">Price : <span class="text-muted me-2"><del>$240 USD</del></span> <b>$225
-                                    USD</b></h5>
-                                <p class="text-muted mb-4">To achieve this, it would be necessary to have uniform
-                                    grammar pronunciation and more common words If several
-                                    languages coalesce
+                                <p class="text-muted mb-4">( 3 Customers Review )</p>
+                                {% if object.status %}
+                                    <h6 class="text-success text-uppercase">Available</h6>
+                                {% else %}
+                                    <h6 class="text-danger text-uppercase">Out of Stock</h6>
+                                {% endif %}
+
+                                <h5 class="mb-4">Price : <span class="text-muted me-2"></span>
+                                    <b>${{ object.sale_price }}
+                                        USD</b></h5>
+                                <p class="text-muted mb-4">
+                                    {{ object.description }}
                                 </p>
 
                                 <div class="product-color"><h5 class="font-size-15">Tags :</h5>
@@ -38,26 +53,13 @@
                                     <a href="#"><p>Blue</p></a>
                                     <a href="#"><p>Gray</p></a>
                                 </div>
-                                <div class="product-color mt-3"><h5 class="font-size-15"></h5>
-                                    <a href="#">
-                                        <div class="product-color-item border rounded"><img
-                                                src="{% static 'website/images/product/01.jpg' %}" alt="" height="100">
-                                        </div>
-                                        <p></p>
-                                    </a>
-                                    <a href="#">
-                                        <div class="product-color-item border rounded"><img
-                                                src="{% static 'website/images/product/01.jpg' %}" alt="" height="100">
-                                        </div>
-                                        <p></p>
-                                    </a>
-                                    <a href="#">
-                                        <div class="product-color-item border rounded"><img
-                                                src="{% static 'website/images/product/01.jpg' %}" alt="" height="100">
-                                        </div>
-                                        <p></p>
-                                    </a>
-                                </div>
+                                {#                                <div class="product-colo mt-2"><h5 class="font-size-15"></h5>#}
+                                {#                                    <a href="/" class="active">#}
+                                {#                                        <div class="product-color-item border rounded">#}
+                                {#                                            <img src="{{ object.image.url }}" alt="" height="100" class="avatar-md">#}
+                                {#                                        </div>#}
+                                {#                                        <p></p></a>#}
+                                {#                                </div>#}
                             </div>
                         </div>
                     </div>
@@ -65,33 +67,18 @@
             </div>
         </div>
     </section>
-    <section class="inner-section">
-        <div class="container">
-            <div class="card">
-                <div class="card-body p-4">
-                    <div class="product-details-frame"><h3 class="frame-title">Description</h3>
-                        <div class="tab-descrip"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Consequatur, ex! Incidunt nemo aspernatur fugiat, saepe suscipit sit perferendis
-                            illum
-                            magnam voluptates aliquid blanditiis, dolor assumenda dolorem ullam harum, doloribus
-                            molestiae! Unde voluptas maiores exercitationem aperiam debitis accusantium, placeat
-                            vero
-                            neque, atque eius numquam incidunt, culpa a odit consequatur nostrum aut nisi
-                            quisquam sequi
-                            dignissimos sed. Odio necessitatibus officiis repudiandae omnis soluta fugiat
-                            aliquam eius
-                            quae. Unde, ipsam atque assumenda consequuntur quia alias nulla, cupiditate ab quos
-                            eveniet
-                            pariatur expedita repellendus fugit. Quisquam fuga et, dolore aut temporibus atque
-                            itaque
-                            nesciunt reiciendis nobis, deleniti nihil vel qui perferendis molestias aliquam
-                            doloremque.</p>
-                        </div>
+    {% if object.detailed_description %}
+        <section class="inner-section">
+            <div class="container">
+                <div class="product-details-frame"><h3 class="frame-title">Description</h3>
+                    <div class="tab-descrip"><p>
+                        {{ object.detailed_description|safe }}
+                    </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 
 {% endblock %}
