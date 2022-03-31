@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 
 from Apps.website.filters import ProductFilter
-from Apps.website.models import Product
+from Apps.website.models import Product, ProductCategory, ProductBrand, ProductTag
 
 
 class HomeView(TemplateView):
@@ -11,6 +11,9 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+        context['categories'] = ProductCategory.objects.all()
+        context['brands'] = ProductBrand.objects.all()
+        context['products'] = Product.objects.all()[:12]
         return context
 
 

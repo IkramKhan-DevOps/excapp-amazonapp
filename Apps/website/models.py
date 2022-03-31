@@ -5,6 +5,12 @@ from django_resized import ResizedImageField
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    image = ResizedImageField(
+        upload_to='product/category/', null=True, blank=True,
+        help_text="Image must be png and size of 150*150",
+        size=[150, 150], crop=['middle', 'center'], quality=75, force_format='PNG'
+    )
+    icon = models.CharField(default="fa fa-list", max_length=255)
 
     class Meta:
         ordering = ['-id']
@@ -33,6 +39,11 @@ class ProductTag(models.Model):
 
 class ProductBrand(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    image = ResizedImageField(
+        upload_to='product/category/', null=True, blank=True,
+        help_text="Image must be png and size of 250*250",
+        size=[250, 250], crop=['middle', 'center'], quality=75, force_format='PNG'
+    )
 
     def __str__(self):
         return self.name

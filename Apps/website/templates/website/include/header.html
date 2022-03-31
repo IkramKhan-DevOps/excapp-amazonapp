@@ -33,11 +33,11 @@
             <div class="col-lg-12">
                 <div class="navbar-content">
                     <ul class="navbar-list">
-                        <li class="navbar-item"><a class="navbar-link" href="#">Home</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="#">Products</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="#">Categories</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="#">Brands</a></li>
-                        <li class="navbar-item"><a class="navbar-link" href="#">Contact</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{% url 'website:home' %}">Home</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{% url 'website:product-list' %}">Products</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{% url 'website:home' %}#categories">Categories</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{% url 'website:home' %}#brands">Brands</a></li>
+                        <li class="navbar-item"><a class="navbar-link" href="{% url 'website:product-list' %}">Contact</a></li>
                     </ul>
                     <div class="navbar-info-group">
                         <div class="navbar-info"><i class="icofont-ui-touch-phone"></i>

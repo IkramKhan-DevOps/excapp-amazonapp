@@ -5,8 +5,8 @@
         <button class="nav-close"><i class="icofont-close"></i></button>
     </div>
     <div class="nav-content">
-        <div class="nav-btn"><a href="#" class="btn btn-inline"><i
-                class="fa fa-unlock-alt"></i><span>join here</span></a></div>
+        <div class="nav-btn"><a href="{% url 'website:product-list' %}" class="btn btn-inline"><i
+                class="fa fa-unlock-alt"></i><span>Products</span></a></div>
         <div class="nav-select-group">
             <div class="nav-select"><i class="icofont-world"></i><select class="select">
                 <option value="english" selected>English</option>
@@ -16,11 +16,13 @@
             </select></div>
         </div>
         <ul class="nav-list">
-            <li><a class="nav-link" href="#"><i class="icofont-logout"></i>C1</a></li>
-            <li><a class="nav-link" href="#"><i class="icofont-logout"></i>C1</a></li>
-            <li><a class="nav-link" href="#"><i class="icofont-logout"></i>C1</a></li>
-            <li><a class="nav-link" href="#"><i class="icofont-logout"></i>C1</a></li>
-            <li><a class="nav-link" href="#"><i class="icofont-logout"></i>C1</a></li>
+            <li><a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a></li>
+            <li><a class="nav-link" href="{% url 'website:product-list' %}"><i class="fa fa-cart-plus"></i>Products</a>
+            </li>
+            <li><a class="nav-link" href="{% url 'website:product-list' %}"><i class="fa fa-list"></i>Categories</a>
+            </li>
+            <li><a class="nav-link" href="{% url 'website:product-list' %}"><i class="fa fa-check"></i>Brands</a></li>
+            <li><a class="nav-link" href="{% url 'website:home' %}"><i class="fa fa-phone"></i>Contact</a></li>
         </ul>
         <div class="nav-info-group">
             <div class="nav-info"><i class="icofont-ui-touch-phone"></i>
@@ -28,6 +30,6 @@
             <div class="nav-info"><i class="icofont-ui-email"></i>
                 <p><small>email us</small><span>support@example.com</span></p></div>
         </div>
-        <div class="nav-footer"><p>All Rights Reserved by <a href="#">Mironcoder</a></p></div>
+        <div class="nav-footer"><p>All Rights Reserved by <a href="#">?</a> | Dev is <a href="#">Exarth</a></p></div>
     </div>
 </aside>
